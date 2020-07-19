@@ -3,6 +3,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import IndexScreen from './src/screens/IndexScreen'
+import { Provider } from './src/context/BlogContext';
 
 const Stack = createStackNavigator();
 
@@ -20,4 +21,10 @@ const MyStack = () => {
   );
 };
 
-export default MyStack
+export default () => {
+  return (
+    <Provider>
+      <MyStack />
+    </Provider>
+  )
+}
