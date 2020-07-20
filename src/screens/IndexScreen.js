@@ -2,9 +2,25 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native'
 import { Context } from '../context/BlogContext';
 import { EvilIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const IndexScreen = ({ navigation }) => {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+        <AntDesign
+          name="plus"
+          size={24}
+          color="black"
+        />
+      </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
+
 
   return (
     <View>
