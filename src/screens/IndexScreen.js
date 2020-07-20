@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'reac
 import { Context } from '../context/BlogContext';
 import { EvilIcons } from '@expo/vector-icons';
 
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
   return (
@@ -17,12 +17,14 @@ const IndexScreen = () => {
         keyExtractor={(BlogPost) => BlogPost.title}
         renderItem={({ item }) => {
           return (
+          <TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id })}>
             <View style={styles.row}>
               <Text style={styles.title}>{item.title}</Text>
               <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                 <EvilIcons name="trash" style={styles.icon} />
               </TouchableOpacity>
             </View>
+          </TouchableOpacity>
           )
         }}
       />
